@@ -2,22 +2,40 @@
 <resources>
 
     <string-array name="movie_title">
-        <item>movie1</item>
-        <item>movie2</item>
-        <item>movie3</item>
+        <item>xXx: Return of Xander Cage (2017)</item>
+        <item>Resident Evil: The Final Chapter (2016)</item>
+        <item>Underworld: Blood Wars (2016)</item>
+    </string-array>
+
+    <string-array name="movie_category">
+        <item>PG-13 107 min - Action | Adventure | Thriller</item>
+        <item>R 106 min - Action | Horror | Sci-Fi | Thriller</item>
+        <item>R 91 min - Action | Horror</item>
+    </string-array>
+
+    <string-array name="movie_director">
+        <item>Director: D.J. Caruso</item>
+        <item>Paul W.S. Anderson</item>
+        <item>Anna Foerster</item>
     </string-array>
 
     <string-array name="movie_actor">
-        <item>actor1</item>
-        <item>actor2</item>
-        <item>actor3</item>
+        <item>Star: Vin Diesel, Donnie Yen, Deepika Padukone, Kris Wu</item>
+        <item>Star: uby Rose, Milla Jovovich, Ali Larter, Iain Glen</item>
+        <item>Star: Kate Beckinsale, Theo James, Tobias Menzies, Lara Pulver</item>
     </string-array>
 
     <array name="movie_avator">
-        <item>@drawable/m1</item>
-        <item>@drawable/m2</item>
-        <item>@drawable/m3</item>
+        <item>@drawable/xxx</item>
+        <item>@drawable/re</item>
+        <item>@drawable/uw</item>
     </array>
+
+    <string-array name="rate">
+        <item>3.5</item>
+        <item>4.5</item>
+        <item>4</item>
+    </string-array>
 
 
 

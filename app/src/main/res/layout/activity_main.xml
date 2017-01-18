@@ -7,19 +7,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cinema"
-        android:textSize="@dimen/tv_movie_title"
+        android:textSize="@dimen/tv_movie_large"
         android:text="@string/tv_movie_cinema"
         android:textStyle="normal|bold"
         android:gravity="center"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_margin="16dp" />
 
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/cinema"
-        android:id="@+id/rv"
-        xmlns:android="http://schemas.android.com/apk/res/android" />
+        android:id="@+id/rv"/>
 </RelativeLayout>
 
 

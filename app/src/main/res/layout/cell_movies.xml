@@ -14,6 +14,18 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"/>
 
+        <RatingBar
+            android:id="@+id/movie_ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:rating="3.0"
+            android:clickable="false"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_below="@+id/movie_avator"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,37 +33,65 @@
             android:id="@+id/movie_title"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/movie_avator"
-            android:textSize="@dimen/tv_movie_title"
+            android:textSize="@dimen/tv_movie_medium"
+            android:layout_marginLeft="10dp"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_category"
+            android:layout_below="@id/movie_title"
+            android:layout_toRightOf="@id/movie_avator"
+            android:textSize="@dimen/tv_movie_small"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_director"
+            android:layout_below="@id/movie_category"
+            android:layout_toRightOf="@id/movie_avator"
+            android:textSize="@dimen/tv_movie_small"
+            android:maxLines="1"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/movie_actor"
-            android:layout_below="@id/movie_title"
+            android:layout_below="@id/movie_director"
             android:layout_toRightOf="@id/movie_avator"
-            android:textSize="@dimen/tv_movie_actor"
-            android:layout_marginTop="20dp"
+            android:textSize="@dimen/tv_movie_small"
+            android:maxLines="1"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/movie_detail"
+            android:id="@+id/btn_movie_detail"
             android:layout_below="@id/movie_actor"
             android:layout_toRightOf="@id/movie_avator"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:text="@string/btn_movie_detail"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/movie_detail"
+            android:id="@+id/btn_movie_tickets"
+            android:layout_toRightOf="@id/btn_movie_detail"
             android:layout_below="@id/movie_actor"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="30dp"
             android:text="@string/btn_movie_ticket"/>
+
+
 
 
 </RelativeLayout>
