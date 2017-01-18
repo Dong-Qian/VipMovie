@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">VipMovie</string>
+    <string name="btn_movie_detail">Detail</string>
+    <string name="btn_movie_ticket">Tickets</string>
+    <string name="tv_movie_cinema">Now Playing in IMAX VIP</string>
 </resources>

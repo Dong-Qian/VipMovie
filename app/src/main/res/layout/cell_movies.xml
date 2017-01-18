@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="220dp"
-    android:layout_height="160dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:id="@+id/movie_avator" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:id="@+id/movie_avator"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_title"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/movie_avator"
+            android:textSize="@dimen/tv_movie_title"
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/movie_actor"
+            android:layout_below="@id/movie_title"
+            android:layout_toRightOf="@id/movie_avator"
+            android:textSize="@dimen/tv_movie_actor"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
 
-            android:id="@+id/movie_title"/>
-
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/movie_actor"/>
+            android:id="@+id/movie_detail"
+            android:layout_below="@id/movie_actor"
+            android:layout_toRightOf="@id/movie_avator"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/btn_movie_detail"/>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="60dp"
-
-            >
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_toRightOf="@id/movie_detail"
+            android:layout_below="@id/movie_actor"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:text="@string/btn_movie_ticket"/>
 
 
-        </LinearLayout>
-
-
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout>
