@@ -2,6 +2,7 @@ package com.qiandongyqgmail.vipmovie;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -11,20 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+public class MainActivity extends AppCompatActivity{
 
-public class MainActivity extends AppCompatActivity {
-
-    private Context context;
-    private RecyclerView rv;
+    private RecyclerView rv = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +35,21 @@ public class MainActivity extends AppCompatActivity {
         MovieAdapter adapter = new MovieAdapter(MainActivity.this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
-
-        rv.addItemDecoration(new DividerItemDecoration(this,null));
-
+        rv.addItemDecoration(new DividerItemDecoration(this));
 
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView movie_avator;
-        private TextView movie_title;
-        private TextView movie_actor;
-        private TextView movie_category;
-        private TextView movie_director;
-        private RatingBar movie_rate;
+        private final ImageView movie_avator;
+        private final TextView movie_title;
+        private final TextView movie_actor;
+        private final TextView movie_category;
+        private final TextView movie_director;
+        private final RatingBar movie_rate;
+        private final Button movie_detail;
+        private final Button movie_ticket;
 
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -60,8 +60,26 @@ public class MainActivity extends AppCompatActivity {
             movie_category = (TextView) itemView.findViewById(R.id.movie_category);
             movie_director = (TextView) itemView.findViewById(R.id.movie_director);
             movie_rate = (RatingBar) itemView.findViewById(R.id.movie_ratingBar);
+            movie_detail = (Button) itemView.findViewById(R.id.btn_movie_detail);
+            movie_ticket = (Button) itemView.findViewById(R.id.btn_movie_tickets);
+            movie_detail.setOnClickListener(this);
+            movie_ticket.setOnClickListener(this);
 
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_movie_detail:
+                    int mPosition= Integer.valueOf(getAdapterPosition());
+                    Intent intent = new Intent(v.getContext(), MovieDetailActivity.class);
+                    intent.putExtra("title", mPosition);
+                    v.getContext().startActivity(intent);
+                    break;
+                case R.id.btn_movie_tickets:
+                    break;
+            }
         }
     }
 
@@ -71,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
         private final String[] mTitle;
         private final String[] mActor;
         private final int[] mAvator;
-        private final String [] mCategory;
-        private final String [] mDirector;
-        private final String [] mRate;
+        private final String[] mCategory;
+        private final String[] mDirector;
+        private final String[] mRate;
+
 
         public MovieAdapter(Context context) {
             Resources resources = context.getResources();
@@ -94,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
             avator.recycle();
         }
-
-
-
 
 
         public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -125,11 +141,11 @@ public class MainActivity extends AppCompatActivity {
     // Add Item decoration (divider)
     public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
-        private Drawable mDivider;
+        private Drawable mDivider = null;
 
-        public DividerItemDecoration(Context context, AttributeSet attrs) {
+        public DividerItemDecoration(Context context) {
             final TypedArray a = context
-                    .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
+                    .obtainStyledAttributes(new int[]{android.R.attr.listDivider});
             mDivider = a.getDrawable(0);
             a.recycle();
         }

@@ -38,6 +38,13 @@
     </string-array>
 
 
+    <string-array name="movie_url">
+        <item>"http://www.imdb.com/title/tt1293847/?ref_=inth_ov_tt"</item>
+        <item>"http://www.imdb.com/title/tt2592614/?ref_=cs_ov_tt"</item>
+        <item>"http://www.imdb.com/title/tt3717252/?ref_=shtt_ov_tt"</item>
+    </string-array>
+
+
 
 
 
