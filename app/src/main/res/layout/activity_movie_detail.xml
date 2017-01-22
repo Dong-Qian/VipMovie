@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_movie_detail"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qiandongyqgmail.vipmovie.MovieDetailActivity">
-
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/movie_detail_vb"
-
-        />
+    android:orientation="vertical">
 
 
-</RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/movie_detail_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/titleBar">
+
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/movie_nav_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+
+
+
+</LinearLayout>

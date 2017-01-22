@@ -71,7 +71,7 @@
             android:layout_marginLeft="10dp"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/movie_button"
             android:layout_height="wrap_content"
             android:id="@+id/btn_movie_detail"
             android:layout_below="@id/movie_actor"
@@ -81,7 +81,7 @@
             android:text="@string/btn_movie_detail"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/movie_button"
             android:layout_height="wrap_content"
             android:id="@+id/btn_movie_tickets"
             android:layout_toRightOf="@id/btn_movie_detail"

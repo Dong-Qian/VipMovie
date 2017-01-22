@@ -11,8 +11,8 @@
         android:text="@string/tv_movie_cinema"
         android:textStyle="normal|bold"
         android:gravity="center"
-        android:textColor="@android:color/black"
-        android:background="@android:color/holo_blue_bright"
+        android:textColor="@android:color/holo_red_dark"
+        android:background="@color/titleBar"
         android:layout_margin="16dp" />
 
 

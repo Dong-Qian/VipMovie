@@ -1,14 +1,13 @@
 package com.qiandongyqgmail.vipmovie;
 
 
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends Activity{
 
     private RecyclerView rv = null;
 
@@ -30,6 +28,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         rv = (RecyclerView) findViewById(R.id.rv);
         MovieAdapter adapter = new MovieAdapter(MainActivity.this);
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ImageView movie_avator;
         private final TextView movie_title;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
         private final Button movie_ticket;
 
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        public MovieViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.cell_movies, parent, false));
             movie_avator = (ImageView) itemView.findViewById(R.id.movie_avator);
             movie_title = (TextView) itemView.findViewById(R.id.movie_title);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    public class MovieAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
         private final int LENGTH;
         private final String[] mTitle;
@@ -115,13 +116,13 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+        public MovieViewHolder onCreateViewHolder(ViewGroup parent, int i) {
 
-            return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
+            return new MovieViewHolder(LayoutInflater.from(parent.getContext()), parent);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(MovieViewHolder holder, int position) {
             holder.movie_title.setText(mTitle[position]);
             holder.movie_actor.setText(mActor[position]);
             holder.movie_avator.setImageResource(mAvator[position]);
@@ -138,48 +139,9 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    // Add Item decoration (divider)
-    public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-        private Drawable mDivider = null;
-
-        public DividerItemDecoration(Context context) {
-            final TypedArray a = context
-                    .obtainStyledAttributes(new int[]{android.R.attr.listDivider});
-            mDivider = a.getDrawable(0);
-            a.recycle();
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-
-            if (parent.getChildAdapterPosition(view) == 0) {
-                return;
-            }
-
-            outRect.top = mDivider.getIntrinsicHeight();
-        }
-
-        @Override
-        public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
-            int dividerLeft = parent.getPaddingLeft();
-            int dividerRight = parent.getWidth() - parent.getPaddingRight();
-
-            int childCount = parent.getChildCount();
-            for (int i = 0; i < childCount - 1; i++) {
-                View child = parent.getChildAt(i);
-
-                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-                int dividerTop = child.getBottom() + params.bottomMargin;
-                int dividerBottom = dividerTop + mDivider.getIntrinsicHeight();
-
-                mDivider.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom);
-                mDivider.draw(canvas);
-            }
-        }
-
-
+    @Override
+    public AssetManager getAssets() {
+        return getResources().getAssets();
     }
+
 }
