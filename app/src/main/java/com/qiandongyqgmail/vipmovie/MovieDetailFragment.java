@@ -51,9 +51,6 @@ public class MovieDetailFragment extends Fragment {
 
 
 
-
-
-
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

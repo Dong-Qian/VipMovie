@@ -25,6 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.1.0' // able to use recyclerView
+    compile 'com.android.support:design:25.1.0' // able to use TabLayout
+    compile 'com.google.code.gson:gson:2.7' // use to save list of objects for reviews
 }

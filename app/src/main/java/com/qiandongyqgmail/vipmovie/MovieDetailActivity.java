@@ -19,6 +19,7 @@ public class MovieDetailActivity extends FragmentActivity implements TabLayout.O
 
     private int mPosition = 0;
     private String[] url = null;
+    private String[] title = null;
     private ViewPager detail_content_viewPager = null;
     private TabLayout detail_nav_tab = null;
 
@@ -32,6 +33,7 @@ public class MovieDetailActivity extends FragmentActivity implements TabLayout.O
         mPosition = intent.getIntExtra("title", 0);
         Resources resources = getResources();
         url = resources.getStringArray(R.array.movie_url);
+        title = resources.getStringArray(R.array.movie_title);
 
         detail_content_viewPager = (ViewPager) findViewById(R.id.movie_detail_viewpager);
         setupViewPager(detail_content_viewPager);
@@ -48,7 +50,9 @@ public class MovieDetailActivity extends FragmentActivity implements TabLayout.O
         MovieDetailFragment md = new MovieDetailFragment();
         md.setParameter(url[mPosition]);
         adapter.addFragment(md, "Detail");
-        adapter.addFragment(new MovieReviewFragment(), "Review");
+        MovieReviewFragment mr = new MovieReviewFragment();
+        mr.setParameter(title[mPosition]);
+        adapter.addFragment(mr, "Review");
         adapter.addFragment(new MovieLocationFragment(), "Location");
         viewPager.setAdapter(adapter);
     }

@@ -1,11 +1,12 @@
 package com.qiandongyqgmail.vipmovie;
 
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Dong Qian on 1/20/2017.
@@ -26,19 +32,45 @@ import java.util.List;
 
 public class MovieReviewFragment extends Fragment{
 
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private RecyclerView rv = null;
-    private List<Reviews> reviewsList = new ArrayList<Reviews>();;
+    private List<Reviews> reviewsList = new ArrayList<Reviews>();
     private EditText et_content = null;
     private Button btn_sendReview =null;
     private String content = null;
-    ReviewAdapter adapter;
+    private ReviewAdapter adapter = null;
+    private SharedPreferences  mPrefs = null;
+    private String Review_Key = null;
+    private String title = null;
+
+
+    public void setParameter(String title){
+        this.title = title;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // Save reviews
+        if(reviewsList.size() != 0) {
+            mPrefs = getActivity().getPreferences(MODE_PRIVATE);
+            // Save reviews
+            SharedPreferences.Editor editor = mPrefs.edit();
+            Gson gson = new Gson();
+            String xxxReviews = gson.toJson(reviewsList);
+            editor.putString(Review_Key, xxxReviews);
+            editor.commit();
+        }
+    }
+
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
 
         View root = inflater.inflate(R.layout.fragment_movie_review, container, false);
+        SharedPreferences  mPrefs = getActivity().getPreferences(MODE_PRIVATE);
 
         rv = (RecyclerView) root.findViewById(R.id.review_rv);
         adapter = new ReviewAdapter();
@@ -46,6 +78,21 @@ public class MovieReviewFragment extends Fragment{
         linearLayoutManager.setReverseLayout(true);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
+
+        Review_Key = title; // Key for retrived reviews for specific moviews
+
+        // Load Reviws
+        if(mPrefs.contains(Review_Key)) {
+            String xxxReviews = getActivity().getPreferences(MODE_PRIVATE).getString(Review_Key, null);
+            // Load reviews
+            Type type = new TypeToken<ArrayList<Reviews>>() {
+            }.getType();
+            Gson gson = new Gson();
+            reviewsList = gson.fromJson(xxxReviews, type);
+        }
+
+
+
 
 
         et_content = (EditText) root.findViewById(R.id.et_content);
@@ -64,6 +111,7 @@ public class MovieReviewFragment extends Fragment{
                 reviewsList.add(reviews);
                 adapter.notifyDataSetChanged();
                 et_content.setText("");
+
 
             }
         });
@@ -104,10 +152,7 @@ public class MovieReviewFragment extends Fragment{
                     }
                 }
             });
-
         }
-
-
     }
 
 
@@ -130,7 +175,11 @@ public class MovieReviewFragment extends Fragment{
 
         @Override
         public int getItemCount() {
-            return reviewsList.size();
+            if(reviewsList.size() != 0) {
+                return reviewsList.size();
+            }else{
+                return 0;
+            }
         }
     }
 }
