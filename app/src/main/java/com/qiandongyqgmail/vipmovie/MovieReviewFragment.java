@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,10 +19,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -42,11 +47,14 @@ public class MovieReviewFragment extends Fragment{
     private SharedPreferences  mPrefs = null;
     private String Review_Key = null;
     private String title = null;
+    private int visited = 0;
+    private String user = null;
 
 
     public void setParameter(String title){
         this.title = title;
     }
+
 
     @Override
     public void onPause() {
@@ -70,6 +78,12 @@ public class MovieReviewFragment extends Fragment{
     {
 
         View root = inflater.inflate(R.layout.fragment_movie_review, container, false);
+
+
+
+
+
+
         SharedPreferences  mPrefs = getActivity().getPreferences(MODE_PRIVATE);
 
         rv = (RecyclerView) root.findViewById(R.id.review_rv);
@@ -105,7 +119,7 @@ public class MovieReviewFragment extends Fragment{
                 Date date = new Date();
                 content = et_content.getText().toString();
                 reviews.setContent(content);
-                reviews.setName("Guest");
+                reviews.setName(user);
                 String formattedDate = dateFormat.format(date);
                 reviews.setDate(formattedDate);
                 reviewsList.add(reviews);
@@ -179,6 +193,40 @@ public class MovieReviewFragment extends Fragment{
                 return reviewsList.size();
             }else{
                 return 0;
+            }
+        }
+    }
+
+    @Override
+    public void setMenuVisibility(final boolean visible) {
+        super.setMenuVisibility(visible);
+        if (visible) {
+            if(visited == 0)
+            {
+                // Get the name of user
+                final EditText input = new EditText(getActivity());
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(input);
+                builder.setTitle("What's your name?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        user = input.getText().toString();
+                        System.out.println(user);
+                        if(user.isEmpty())
+                        {
+                            user = "Guest";
+                        }
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
+
+                visited = 1;
             }
         }
     }
