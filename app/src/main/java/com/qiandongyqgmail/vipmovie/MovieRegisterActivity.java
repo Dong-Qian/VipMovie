@@ -1,15 +1,14 @@
 package com.qiandongyqgmail.vipmovie;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.DialogFragment;
+
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-public class MovieRegisterActivity extends Activity
+public class MovieRegisterActivity extends AppCompatActivity
 {
     /*-PRIVATE ATTRIBUTES-*/
     private TextView movieTitle = null;
