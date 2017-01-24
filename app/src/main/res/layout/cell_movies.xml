@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    FILE :            cell_movies.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the single movie inside the List of movies (RecyclerView)
+-->
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
-
+    android:layout_margin="10dp">
 
 
         <ImageView
@@ -90,7 +98,13 @@
             android:layout_marginLeft="30dp"
             android:text="@string/btn_movie_ticket"/>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/titleBar"
+            android:layout_below="@+id/btn_movie_tickets"
+            android:layout_marginTop="15dp">
+        </LinearLayout>
 
 
 </RelativeLayout>

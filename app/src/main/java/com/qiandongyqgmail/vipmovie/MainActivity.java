@@ -30,9 +30,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity{
 
-    /*-PRIVATE ATTRIBUTES-*/
     // create a recyclerView to show list of movies
-    private RecyclerView rv;
+    private RecyclerView rv = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +51,14 @@ public class MainActivity extends AppCompatActivity{
     // MovieViewHolder is a custom ViewHolder extends of recyclerView.View, use to link each widgets to the code behind variable
     static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        /*-PRIVATE ATTRIBUTES-*/
-        private final ImageView movie_avator;
-        private final TextView movie_title;
-        private final TextView movie_actor;
-        private final TextView movie_category;
-        private final TextView movie_director;
-        private final RatingBar movie_rate;
-        private final Button movie_detail;
-        private final Button movie_ticket;
+        private  ImageView movie_avator = null;
+        private  TextView movie_title = null;
+        private  TextView movie_actor = null;
+        private  TextView movie_category = null;
+        private  TextView movie_director = null;
+        private  RatingBar movie_rate = null;
+        private  Button movie_detail = null;
+        private  Button movie_ticket = null;
 
 
         // Construct
@@ -82,13 +80,13 @@ public class MainActivity extends AppCompatActivity{
 
 
         // Detail button click: 1. Get position of the current button in the recyclerView
-        //                      2. Call the MovieDetailActivity with position as parameter
+        //                      2. Call the MovieActivity with position as parameter
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_movie_detail:
                     int mPosition= Integer.valueOf(getAdapterPosition());
-                    Intent intent = new Intent(v.getContext(), MovieDetailActivity.class);
+                    Intent intent = new Intent(v.getContext(), MovieActivity.class);
                     intent.putExtra("title", mPosition);
                     v.getContext().startActivity(intent);
                     break;
@@ -103,14 +101,14 @@ public class MainActivity extends AppCompatActivity{
     // Use to retrieve data from source (arrary.xml)
     public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-        /*-PRIVATE ATTRIBUTES-*/
-        private final int LENGTH;
-        private final String[] mTitle;
-        private final String[] mActor;
-        private final int[] mAvator;
-        private final String[] mCategory;
-        private final String[] mDirector;
-        private final String[] mRate;
+        private  int LENGTH = 0;
+        private  String[] mTitle = null;
+        private  String[] mActor = null;
+        private  int[] mAvator = null;
+        private  String[] mCategory = null;
+        private  String[] mDirector = null;
+        private  String[] mRate = null;
+
 
         // Constructor
         // Get all data from the array.xml and put into local variables
@@ -130,6 +128,7 @@ public class MainActivity extends AppCompatActivity{
             for (int i = 0; i < LENGTH; i++) {
                 mAvator[i] = avator.getResourceId(i, 0);
             }
+
             avator.recycle();
         }
 
@@ -138,7 +137,6 @@ public class MainActivity extends AppCompatActivity{
 
             return new MovieViewHolder(LayoutInflater.from(parent.getContext()), parent);
         }
-
 
         // Most important part of MovieAdapter
         // Bind the data to the specific widgets (buttons,textView, image...etc)
@@ -150,8 +148,8 @@ public class MainActivity extends AppCompatActivity{
             holder.movie_category.setText(mCategory[position]);
             holder.movie_director.setText(mDirector[position]);
             holder.movie_rate.setRating(Float.parseFloat(mRate[position]));
-        }
 
+        }
 
         // how many you wan to show on the recyclerView (screen)
         @Override

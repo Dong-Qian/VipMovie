@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            activity_movie.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the movie detail screen
+-->
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,16 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/titleBar">
-
         </LinearLayout>
+
 
         <android.support.design.widget.TabLayout
             android:id="@+id/movie_nav_tabs"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
-
-
-
 
 
 </LinearLayout>

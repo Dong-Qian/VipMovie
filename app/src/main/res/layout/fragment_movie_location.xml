@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            fragment_movie_location.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the single review inside the List of reviews (RecyclerView)
+-->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:text="Location"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tv_location"
+        android:textColor="@color/colorAccent"
+        android:background="@color/titleBar"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/location_is"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/tv_location">
+    </ImageSwitcher>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_left"
+        android:id="@+id/btn_location_left"
+        android:layout_alignBaseline="@+id/btn_location_right"
+        android:layout_alignBottom="@+id/btn_location_right"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_right"
+        android:id="@+id/btn_location_right"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/location_is"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp"
+        android:textColor="@color/colorAccent"/>
+
+
+</RelativeLayout>

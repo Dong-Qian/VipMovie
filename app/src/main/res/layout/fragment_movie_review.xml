@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            fragment_movie_review.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the movie review screen
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:id="@+id/review_layout"
     android:orientation="vertical">
 
 

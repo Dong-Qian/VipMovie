@@ -24,7 +24,7 @@ public class MovieRegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_movie_register);
 
         // Loading all the specified widget IDs
-        movieTitle = (TextView) findViewById(R.id.TextViewTitle);
+        movieTitle = (TextView) findViewById(R.id.TV_Register_Title);
 
         // From the MainActivity, get the position...
         // We must access the resources to acquire the position?

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            cell_reviews.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the single review inside the List of reviews (RecyclerView)
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/activity_vertical_margin">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,16 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/review_time"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="15dp"
             android:textSize="@dimen/tv_movie_small"
             android:textStyle="italic"
             android:textColor="#87CEFA"/>
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +51,10 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="8dp"
             android:padding="5dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tv_movie_medium"/>
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -58,8 +73,6 @@
         android:background="@color/markdown">
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

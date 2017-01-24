@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            MainActivity.java
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the Main Screen
+
+-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -15,12 +26,13 @@
         android:background="@color/titleBar"
         android:layout_margin="16dp" />
 
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/cinema"
         android:id="@+id/rv"/>
+
+
 </RelativeLayout>
 
 

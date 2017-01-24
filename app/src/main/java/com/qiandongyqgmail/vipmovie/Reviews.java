@@ -1,20 +1,23 @@
+/*
+* FILE :            Review.java
+* PROJECT :         MAD - Assignment #1
+* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+* FIRST VERSION :   2017-01-25
+* DESCRIPTION :     A class to create a review object
+*/
+
 package com.qiandongyqgmail.vipmovie;
 
-import java.util.Date;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-
-/**
- * Created by Dong Qian on 1/21/2017.
- */
 
 public class Reviews {
 
-    private String name;
-    private String content;
-    private String date;
+    /*-PRIVATE ATTRIBUTES-*/
+    private String name; // user name, in this case, it is always "Guest"
+    private String content; // Content of reviews
+    private String date; // The time when the review sended
 
 
+    /*- Setter -*/
     public void setName(String name) {
         this.name = "@" + name;
     }
@@ -27,6 +30,7 @@ public class Reviews {
         this.date = "at " + date;
     }
 
+    /*- Getter -*/
     public String getName() {
         return name;
     }
@@ -39,3 +43,6 @@ public class Reviews {
         return date;
     }
 }
+
+
+
