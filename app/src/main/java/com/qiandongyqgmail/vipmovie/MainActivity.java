@@ -1,14 +1,22 @@
+/*
+* FILE :            MainActivity.java
+* PROJECT :         MAD - Assignment #1
+* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+* FIRST VERSION :   2017-01-25
+* DESCRIPTION :     Launch Screen with now playing movies.
+*                   Detail: button take user to website of that particular movies
+*                   Ticket: button take user to purchase the movie ticket
+*/
+
+
 package com.qiandongyqgmail.vipmovie;
 
-
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,29 +28,31 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends Activity{
+public class MainActivity extends AppCompatActivity{
 
-    private RecyclerView rv = null;
+    /*-PRIVATE ATTRIBUTES-*/
+    // create a recyclerView to show list of movies
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
+        // Set up recyclerView LayoutManager (Linearlayout)
+        // Set up the recyclerView Adapter
         rv = (RecyclerView) findViewById(R.id.rv);
         MovieAdapter adapter = new MovieAdapter(MainActivity.this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
-        rv.addItemDecoration(new DividerItemDecoration(this));
-
     }
 
 
+    // In order to use recyclerView, we need ViewHolder and adapter
+    // MovieViewHolder is a custom ViewHolder extends of recyclerView.View, use to link each widgets to the code behind variable
     static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        /*-PRIVATE ATTRIBUTES-*/
         private final ImageView movie_avator;
         private final TextView movie_title;
         private final TextView movie_actor;
@@ -53,6 +63,8 @@ public class MainActivity extends Activity{
         private final Button movie_ticket;
 
 
+        // Construct
+        // link the widgets
         public MovieViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.cell_movies, parent, false));
             movie_avator = (ImageView) itemView.findViewById(R.id.movie_avator);
@@ -63,12 +75,14 @@ public class MainActivity extends Activity{
             movie_rate = (RatingBar) itemView.findViewById(R.id.movie_ratingBar);
             movie_detail = (Button) itemView.findViewById(R.id.btn_movie_detail);
             movie_ticket = (Button) itemView.findViewById(R.id.btn_movie_tickets);
+            // Set up click listener to the detail and ticket buttons
             movie_detail.setOnClickListener(this);
             movie_ticket.setOnClickListener(this);
-
-
         }
 
+
+        // Detail button click: 1. Get position of the current button in the recyclerView
+        //                      2. Call the MovieDetailActivity with position as parameter
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -84,8 +98,12 @@ public class MainActivity extends Activity{
         }
     }
 
+
+    // MovieAdapter extend form RecyclerView.Adapter
+    // Use to retrieve data from source (arrary.xml)
     public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
+        /*-PRIVATE ATTRIBUTES-*/
         private final int LENGTH;
         private final String[] mTitle;
         private final String[] mActor;
@@ -94,7 +112,8 @@ public class MainActivity extends Activity{
         private final String[] mDirector;
         private final String[] mRate;
 
-
+        // Constructor
+        // Get all data from the array.xml and put into local variables
         public MovieAdapter(Context context) {
             Resources resources = context.getResources();
             mTitle = resources.getStringArray(R.array.movie_title);
@@ -103,7 +122,7 @@ public class MainActivity extends Activity{
             mDirector = resources.getStringArray(R.array.movie_director);
             mRate = resources.getStringArray(R.array.rate);
 
-
+            // For image resource, we need use typeArray to obtain
             TypedArray avator = resources.obtainTypedArray(R.array.movie_avator);
             LENGTH = avator.length();
             mAvator = new int[LENGTH];
@@ -111,7 +130,6 @@ public class MainActivity extends Activity{
             for (int i = 0; i < LENGTH; i++) {
                 mAvator[i] = avator.getResourceId(i, 0);
             }
-
             avator.recycle();
         }
 
@@ -121,6 +139,9 @@ public class MainActivity extends Activity{
             return new MovieViewHolder(LayoutInflater.from(parent.getContext()), parent);
         }
 
+
+        // Most important part of MovieAdapter
+        // Bind the data to the specific widgets (buttons,textView, image...etc)
         @Override
         public void onBindViewHolder(MovieViewHolder holder, int position) {
             holder.movie_title.setText(mTitle[position]);
@@ -129,19 +150,14 @@ public class MainActivity extends Activity{
             holder.movie_category.setText(mCategory[position]);
             holder.movie_director.setText(mDirector[position]);
             holder.movie_rate.setRating(Float.parseFloat(mRate[position]));
-
         }
 
+
+        // how many you wan to show on the recyclerView (screen)
         @Override
         public int getItemCount() {
             return LENGTH;
         }
 
     }
-
-    @Override
-    public AssetManager getAssets() {
-        return getResources().getAssets();
-    }
-
 }
