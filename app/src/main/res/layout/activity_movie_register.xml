@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    FILE :            activity_movie_register.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana ()
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout for the movie registration.
+
+-->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_movie_register"
@@ -18,10 +26,114 @@
 
         <TextView
             android:id="@+id/TV_Register_Title"
-            android:text="MOVIE TITLE GOES HERE"
+            android:text="[MOVIE PLACEHOLDER]"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/tv_movie_medium"
+            android:textColor="@color/black"
+            android:textStyle="italic|bold"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:id="@+id/ET_Register_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:hint="@string/et_register_name" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:id="@+id/ET_Register_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/Bttn_Register_Date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/btn_register_date"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:id="@+id/ET_Register_Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/Bttn_Register_Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_register_time"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RadioGroup
+            android:id="@+id/Radio_Register_TicketType"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Radio_Register_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="Regular"/>
+
+            <RadioButton
+                android:id="@+id/Radio_Register_IMAX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="IMAX"/>
+
+        </RadioGroup>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Spinner
+            android:id="@+id/Spinner_Quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"/>
+
+        <TextView
+            android:text="Quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/black"
             android:textStyle="italic|bold"/>
 
     </TableRow>
