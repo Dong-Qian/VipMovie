@@ -83,14 +83,21 @@ public class MainActivity extends AppCompatActivity{
         //                      2. Call the MovieActivity with position as parameter
         @Override
         public void onClick(View v) {
+
+            Intent intent = null;
+            // Get the position from the click - used to get an element from the array.xml
+            int mPosition = Integer.valueOf(getAdapterPosition());
+
             switch (v.getId()) {
                 case R.id.btn_movie_detail:
-                    int mPosition= Integer.valueOf(getAdapterPosition());
-                    Intent intent = new Intent(v.getContext(), MovieActivity.class);
+                    intent = new Intent(v.getContext(), MovieActivity.class);
                     intent.putExtra("title", mPosition);
                     v.getContext().startActivity(intent);
                     break;
                 case R.id.btn_movie_tickets:
+                    intent = new Intent(v.getContext(), MovieRegisterActivity.class);
+                    intent.putExtra("title", mPosition);
+                    v.getContext().startActivity(intent);
                     break;
             }
         }
