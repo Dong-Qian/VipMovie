@@ -75,4 +75,15 @@
         <item>http://www.imdb.com/title/tt3748528/?ref_=inth_ov_i</item>
     </string-array>
 
+    <string-array name="ticket_quantity">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
 </resources>

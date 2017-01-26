@@ -6,4 +6,9 @@
     <string name="google_maps_key">AIzaSyD_vveJ82d1_lXzs3pKIfoTNFKta118Mx8</string>
     <string name="location_left"><![CDATA[<<<]]></string>
     <string name="location_right"><![CDATA[>>>]]></string>
+
+    <!--Movie Register Activity Strings-->
+    <string name="et_register_name">Enter your Name</string>
+    <string name="btn_register_date">Date</string>
+    <string name="btn_register_time">Time</string>
 </resources>
