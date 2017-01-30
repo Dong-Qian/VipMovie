@@ -2,10 +2,13 @@
 <!--
     FILE :            activity_movie_register.xml
     PROJECT :         MAD - Assignment #1
-    PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana ()
+    PROGRAMMER :      Dong Qian (6573448) / Austin Che / Monira Sultana ()
     FIRST VERSION :   2017-01-25
-    DESCRIPTION :     Layout for the movie registration.
-
+    DESCRIPTION :     Layout for the movie registration. The purpose of this activity
+            is to simulate the purchasing of a movie ticket. The movie-goer must
+            enter their name and choose the date and time to see the movie. Finally, the
+            user must choose the ticket type and ticket quantity. The user must purchase the
+            ticket - then the receipt is shown.
 -->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -46,6 +49,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:maxLines="1"
+            android:inputType="text"
             android:hint="@string/et_register_name" />
 
     </TableRow>
@@ -60,6 +64,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
+            android:inputType="none"
             android:layout_weight="1"
             android:maxLines="1"/>
 
@@ -82,6 +87,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:layout_weight="1"
+            android:inputType="none"
             android:maxLines="1"/>
 
         <Button
@@ -135,8 +141,46 @@
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textStyle="italic|bold"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/TV_Register_PriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@color/black"
+            android:text="@string/tv_register_price"/>
+
+        <TextView
+            android:id="@+id/TV_Register_Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:text="$0.00"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/Bttn_Register_Purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPurchaseButton"
+            android:text="@string/btn_register_purchase"
+            />
 
     </TableRow>
+
 
 
 </TableLayout>
