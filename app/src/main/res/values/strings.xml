@@ -11,4 +11,6 @@
     <string name="et_register_name">Enter your Name</string>
     <string name="btn_register_date">Date</string>
     <string name="btn_register_time">Time</string>
+    <string name="tv_register_price">Total Price: </string>
+    <string name="btn_register_purchase">Purchase</string>
 </resources>

@@ -6,6 +6,7 @@
     <color name="titleBar">#404040</color>
     <color name="review_name">#FF8000</color>
     <color name="markdown">#E0E0E0</color>
+    <color name="colorPurchaseButton">#339933</color>
     <color name="black">#000000</color>
     <color name= "white">#FFFFFF</color>
 
