@@ -33,7 +33,6 @@ import java.util.Date;
 import static android.app.DatePickerDialog.*;
 
 public class MovieRegisterActivity extends AppCompatActivity
-
 {
     /*-PRIVATE ATTRIBUTES-*/
     //-Widget specific fields-//
@@ -51,6 +50,8 @@ public class MovieRegisterActivity extends AppCompatActivity
 
     /*-String specific registration variables-*/
     private String title[] = null;
+
+    Ticket ticket = null;
 
 
     @Override
@@ -77,6 +78,8 @@ public class MovieRegisterActivity extends AppCompatActivity
         // Apply the adapter to the spinner
         ticketDropDown.setAdapter(adapter);
 
+        // Instantiate a Ticket object
+        ticket = new Ticket();
 
         // From the MainActivity, get the position...
         int mPosition = getIntent().getIntExtra("title", 0);
@@ -90,22 +93,9 @@ public class MovieRegisterActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Calendar now = Calendar.getInstance();
-                int currentYear = now.get(Calendar.YEAR);
-                int currentMonth = now.get(Calendar.MONTH);
-                int currentDay = now.get(Calendar.DAY_OF_MONTH);
-
-                new DatePickerDialog(MovieRegisterActivity.this, new OnDateSetListener()
-                {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-                    {
-                        // The month needs to be offset by 1
-                        String movieDate = String.format("%d - %02d - %02d", year, month + 1, dayOfMonth);
-                        etDate.setText(movieDate);
-                    }
-
-                }, currentYear, currentMonth, currentDay).show();
+                setDateEvent(v);
+                String test = ticket.getBuyerName();
+                System.out.println(test);
             }
         });
 
@@ -114,70 +104,82 @@ public class MovieRegisterActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                new TimePickerDialog(MovieRegisterActivity.this, new TimePickerDialog.OnTimeSetListener()
-                {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
-                    {
-                        String movieTime = String.format("%02d : %02d", hourOfDay, minute);
-                        etTime.setText(movieTime);
-                    }
-                }, 0, 0, false).show();
+                setTimeEvent();
             }
         });
     }
-
-    /*
-     * METHOD : onClick
-     * DETAILS : The onClick method overrides the View onClick and
-     *      determines the widget that was clicked.
-     * PARAM :
-     * RETURN : None
-     */
-    //@Override
-//    public void onClick(View v) {
-//        switch(v.getId())
-//        {
-//            case R.id.Bttn_Register_Date:
-//                // Call method to handle Date dialog
-//                // Pass the view to the method
-//                setDate(v);
-//                break;
-//
-//            case R.id.Bttn_Register_Time:
-//                // Call method to handle Time dialog
-//                break;
-//
-//            case R.id.Bttn_Register_Purchase:
-//                // Implement a "Buy/Purchase/Confirm" button
-//                // Call method to handle purchasing the ticket
-//                break;
-//
-//            default:
-//                break;
-//        }
-//    }
-
 
 
     //==============================================
     // DATE AND TIME PICKER DIALOGS
     //----------------------------------------------
     /*
-     * METHOD : SetDate
+     * METHOD :
      * DETAILS :
      * PARAM :
      * RETURN : None
      */
-//    public void setDate(View v)
-//    {
-//        new DatePickerDialog(MovieRegisterActivity.this, new DatePickerDialog.OnDateSetListener()
-//        {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-//            {
-//
-//            }
-//        })
-//    }
+    public void setDateEvent(View v)
+    {
+        Calendar now = Calendar.getInstance();
+        final int currentYear = now.get(Calendar.YEAR);
+        final int currentMonth = now.get(Calendar.MONTH);
+        final int currentDay = now.get(Calendar.DAY_OF_MONTH);
+        new DatePickerDialog(MovieRegisterActivity.this, new OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+            {
+                String movieDate = null;
+                if (year >= currentYear) {
+                    if (month == currentMonth) {
+                        if (dayOfMonth >= currentDay) {
+                            movieDate = String.format("%d - %02d - %02d", year, month + 1, dayOfMonth);
+                        }
+                    }
+                }
+
+                etDate.setText(movieDate);
+            }
+
+        }, currentYear, currentMonth, currentDay).show();
+    }
+
+
+    /*
+     * METHOD :
+     * DETAILS :
+     * PARAM :
+     * RETURN : None
+     */
+    public void setTimeEvent()
+    {
+        new TimePickerDialog(MovieRegisterActivity.this, new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+            {
+                System.out.println(String.format("Hour of day %d", hourOfDay));
+                String movieTime = null;
+
+                // Since the hourOfDay uses 24:00 hour standard
+                // we have to adjust it to correspond with AM and PM
+                if (hourOfDay >= 12)
+                {
+                    if (hourOfDay >= 13) {
+                        hourOfDay = hourOfDay - 12;
+                    }
+                    movieTime = String.format("%02d : %02d PM", hourOfDay, minute);
+                }
+                else
+                {
+                    // Else the time in the AM period
+                    movieTime = String.format("%02d : %02d AM", hourOfDay, minute);
+                }
+
+                etTime.setText(movieTime);
+            }
+
+        }, 0, 0, false).show();
+    }
 }

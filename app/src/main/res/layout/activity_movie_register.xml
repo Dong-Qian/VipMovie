@@ -152,7 +152,7 @@
             android:id="@+id/TV_Register_PriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:gravity="center"
             android:textColor="@color/black"
             android:text="@string/tv_register_price"/>
 
@@ -160,7 +160,6 @@
             android:id="@+id/TV_Register_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:textColor="@color/black"
             android:text="$0.00"
             />
@@ -175,7 +174,6 @@
             android:id="@+id/Bttn_Register_Purchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPurchaseButton"
             android:text="@string/btn_register_purchase"
             />
 
