@@ -145,16 +145,16 @@
             android:textStyle="italic|bold"/>
     </TableRow>
     <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:id="@+id/TV_Register_PriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
+            android:layout_weight="1"
             android:textColor="@color/black"
             android:text="@string/tv_register_price"/>
 
@@ -162,13 +162,15 @@
             android:id="@+id/TV_Register_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_weight="1"
             android:textColor="@color/black"
             android:text="$0.00"
             />
     </TableRow>
     <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="center">
 
@@ -176,6 +178,7 @@
             android:id="@+id/Bttn_Register_Purchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/btn_register_purchase"
             />
 

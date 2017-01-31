@@ -29,6 +29,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -42,7 +43,7 @@ public class MovieRegisterActivity extends AppCompatActivity
     /*-PRIVATE ATTRIBUTES-*/
     //-Widget specific fields-//
     private TextView movieTitle = null;
-    private TextView totalPrice = null;
+    private TextView tvTotalPrice = null;
     private EditText etName = null;
     private EditText etDate = null;
     private EditText etTime = null;
@@ -51,13 +52,13 @@ public class MovieRegisterActivity extends AppCompatActivity
     private Button bttnPurchase = null;
     private RadioButton radioRegular = null;
     private RadioButton radioIMAX = null;
-    private Spinner ticketDropDown = null;
+    private Spinner spinnerQuantity = null;
 
     /*-String specific registration variables-*/
     private int arrayPosition;
-    private String arrayTitle[] = null;
-    private String arrayPrice[] = null;
-
+    private String[] arrayTitle = null;
+    private String[] arrayPrice = null;
+    private String ticketQuantity = null;
     Ticket ticket = null;
 
 
@@ -68,7 +69,7 @@ public class MovieRegisterActivity extends AppCompatActivity
 
         // Loading all the specified widget IDs
         movieTitle = (TextView) findViewById(R.id.TV_Register_Title);
-        totalPrice = (TextView) findViewById(R.id.TV_Register_Price);
+        tvTotalPrice = (TextView) findViewById(R.id.TV_Register_Price);
         etName = (EditText) findViewById(R.id.ET_Register_Name);
         etDate = (EditText) findViewById(R.id.ET_Register_Date);
         etTime = (EditText) findViewById(R.id.ET_Register_Time);
@@ -77,7 +78,7 @@ public class MovieRegisterActivity extends AppCompatActivity
         bttnPurchase = (Button) findViewById(R.id.Bttn_Register_Purchase);
         radioRegular = (RadioButton) findViewById(R.id.Radio_Register_Regular);
         radioIMAX = (RadioButton) findViewById(R.id.Radio_Register_IMAX);
-        ticketDropDown = (Spinner) findViewById(R.id.Spinner_Quantity);
+        spinnerQuantity = (Spinner) findViewById(R.id.Spinner_Quantity);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -85,7 +86,7 @@ public class MovieRegisterActivity extends AppCompatActivity
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        ticketDropDown.setAdapter(adapter);
+        spinnerQuantity.setAdapter(adapter);
 
         // Instantiate a Ticket object
         ticket = new Ticket();
@@ -94,10 +95,13 @@ public class MovieRegisterActivity extends AppCompatActivity
         arrayPosition = getIntent().getIntExtra("title", 0);
         Resources resources = getResources();
         arrayTitle = resources.getStringArray(R.array.movie_title);
-        arrayPrice = resources.getStringArray(R.array.ticket_quantity);
+        arrayPrice = resources.getStringArray(R.array.ticket_price);
+        // For the ticket quantity - we must get it from the current selected spinner item
+        ticketQuantity = spinnerQuantity.getSelectedItem().toString();
 
         movieTitle.setText(arrayTitle[arrayPosition]);
         radioRegular.setChecked(true);
+        calculateCurrentPrice();
 
         etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
         {
@@ -136,6 +140,25 @@ public class MovieRegisterActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 setTimeEvent();
+            }
+        });
+
+
+        spinnerQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(parent.getContext(),
+                        "OnItemSelectedListener: " + parent.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+
+                // Everytime the Spinner changes - recalculate the total ticket price
+                ticketQuantity = parent.getItemAtPosition(position).toString();
+                calculateCurrentPrice();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -191,7 +214,7 @@ public class MovieRegisterActivity extends AppCompatActivity
             public void onTimeSet(TimePicker view, int hourOfDay, int minute)
             {
                 System.out.println(String.format("Hour of day %d", hourOfDay));
-                String movieTime = null;
+                String movieTime;
 
                 // Since the hourOfDay uses 24:00 hour standard
                 // we have to adjust it to correspond with AM and PM
@@ -212,5 +235,23 @@ public class MovieRegisterActivity extends AppCompatActivity
             }
 
         }, 0, 0, false).show();
+    }
+
+
+
+    //==============================================
+    // CALCULATE TICKET PRICE
+    //----------------------------------------------
+    public void calculateCurrentPrice()
+    {
+        // Convert string to int
+        float price = Float.valueOf(arrayPrice[arrayPosition]);
+        int quantity = Integer.valueOf(ticketQuantity);
+        float totalPrice;
+
+        // Calculate the total price of the ticket
+        totalPrice = price * quantity;
+        // Set the TextView to reflect the current total price
+        tvTotalPrice.setText(String.format("$ %2.2f", totalPrice));
     }
 }
