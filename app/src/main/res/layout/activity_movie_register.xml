@@ -49,7 +49,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:maxLines="1"
-            android:inputType="text"
+            android:inputType="textPersonName"
             android:hint="@string/et_register_name" />
 
     </TableRow>
@@ -101,6 +101,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <!--Radio Group options: Movie Ticket Types-->
         <RadioGroup
             android:id="@+id/Radio_Register_TicketType"
             android:orientation="horizontal">
@@ -110,7 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="15dp"
-                android:text="Regular"/>
+                android:text="Regular"
+                android:checked="false"/>
 
             <RadioButton
                 android:id="@+id/Radio_Register_IMAX"

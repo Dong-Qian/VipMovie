@@ -10,11 +10,16 @@ package com.qiandongyqgmail.vipmovie;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,7 +54,9 @@ public class MovieRegisterActivity extends AppCompatActivity
     private Spinner ticketDropDown = null;
 
     /*-String specific registration variables-*/
-    private String title[] = null;
+    private int arrayPosition;
+    private String arrayTitle[] = null;
+    private String arrayPrice[] = null;
 
     Ticket ticket = null;
 
@@ -68,6 +75,8 @@ public class MovieRegisterActivity extends AppCompatActivity
         bttnDate = (Button) findViewById(R.id.Bttn_Register_Date);
         bttnTime = (Button) findViewById(R.id.Bttn_Register_Time);
         bttnPurchase = (Button) findViewById(R.id.Bttn_Register_Purchase);
+        radioRegular = (RadioButton) findViewById(R.id.Radio_Register_Regular);
+        radioIMAX = (RadioButton) findViewById(R.id.Radio_Register_IMAX);
         ticketDropDown = (Spinner) findViewById(R.id.Spinner_Quantity);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -82,11 +91,29 @@ public class MovieRegisterActivity extends AppCompatActivity
         ticket = new Ticket();
 
         // From the MainActivity, get the position...
-        int mPosition = getIntent().getIntExtra("title", 0);
+        arrayPosition = getIntent().getIntExtra("title", 0);
         Resources resources = getResources();
-        title = resources.getStringArray(R.array.movie_title);
+        arrayTitle = resources.getStringArray(R.array.movie_title);
+        arrayPrice = resources.getStringArray(R.array.ticket_quantity);
 
-        movieTitle.setText(title[mPosition]);
+        movieTitle.setText(arrayTitle[arrayPosition]);
+        radioRegular.setChecked(true);
+
+        etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    InputMethodManager imm =
+                            (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
+                }
+
+                return false;
+            }
+        });
+
 
         bttnDate.setOnClickListener(new View.OnClickListener()
         {
@@ -94,13 +121,17 @@ public class MovieRegisterActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 setDateEvent(v);
-                String test = ticket.getBuyerName();
-                System.out.println(test);
             }
         });
 
         bttnTime.setOnClickListener(new View.OnClickListener()
         {
+            /*
+             * METHOD : onClick
+             * DETAILS : On the button click, display the TimePickerDialog.
+             * PARAM : v - View - The view (widget) that was clicked
+             * RETURN : NONE
+             */
             @Override
             public void onClick(View v)
             {
