@@ -11,6 +11,9 @@
     <string name="et_register_name">Enter your Name</string>
     <string name="btn_register_date">Date</string>
     <string name="btn_register_time">Time</string>
+    <string name="radio_regular_text">Regular</string>
+    <string name="radio_imax_text">IMAX</string>
+    <string name="tv_ticket_quantity">Quantity</string>
     <string name="tv_register_price">Total Price: </string>
     <string name="btn_register_purchase">Purchase</string>
 </resources>

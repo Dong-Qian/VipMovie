@@ -29,7 +29,6 @@
 
         <TextView
             android:id="@+id/TV_Register_Title"
-            android:text="[MOVIE PLACEHOLDER]"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/tv_movie_medium"
@@ -111,15 +110,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="15dp"
-                android:text="Regular"
-                android:checked="false"/>
+                android:text="@string/radio_regular_text"/>
 
             <RadioButton
                 android:id="@+id/Radio_Register_IMAX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="15dp"
-                android:text="IMAX"/>
+                android:text="@string/radio_imax_text"/>
 
         </RadioGroup>
 
@@ -137,12 +135,12 @@
             android:layout_weight="0.9"/>
 
         <TextView
-            android:text="Quantity"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold"
+            android:text="@string/tv_ticket_quantity"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -164,9 +162,7 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="$0.00"
-            />
+            android:textColor="@color/black"/>
     </TableRow>
     <TableRow
         android:layout_width="wrap_content"
@@ -179,8 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btn_register_purchase"
-            />
+            android:text="@string/btn_register_purchase"/>
 
     </TableRow>
 
