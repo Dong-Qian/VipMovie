@@ -1,7 +1,7 @@
 /*
 * FILE :            MovieRegisterActivity.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin Che / Monira Sultana ()
+* PROGRAMMER :      Dong Qian (6573448) / Austin Che / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-25
 * DESCRIPTION : This is the code-behind for the MovieRegisterActivity. The purpose
 *       of this activity is to simulate the purchasing of a ticket for a particular movie.
@@ -16,12 +16,11 @@ package com.qiandongyqgmail.vipmovie;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -37,15 +36,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import static android.app.DatePickerDialog.*;
 
@@ -113,23 +104,24 @@ public class MovieRegisterActivity extends AppCompatActivity
         // The Name EditText widget
         //
         etName = (EditText) findViewById(R.id.ET_Register_Name);
-        etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
-        {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-            {
-                if (actionId == EditorInfo.IME_ACTION_DONE)
-                {
-                    InputMethodManager imm = null;
-                    imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
 
-                    ticket.setBuyerName(etName.getText().toString());
-                }
-
-                return false;
-            }
-        });
+//        etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
+//        {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+//            {
+//                if (actionId == EditorInfo.IME_ACTION_DONE)
+//                {
+//                    InputMethodManager imm = null;
+//                    imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
+//
+//                    ticket.setBuyerName(etName.getText().toString());
+//                }
+//
+//                return false;
+//            }
+//        });
 
         // The Ticket Type Spinner widget
         //
@@ -141,6 +133,9 @@ public class MovieRegisterActivity extends AppCompatActivity
                 // Everytime the Spinner value changes - recalculate the total ticket price
                 ticketQuantity = parent.getItemAtPosition(position).toString();
                 calculateCurrentPrice();
+                ticket.setTicketQuantity(ticketQuantity);
+                ticket.setTicketPrice(arrayPrice[arrayPosition]); // added by dong
+
             }
 
             @Override
@@ -274,6 +269,7 @@ public class MovieRegisterActivity extends AppCompatActivity
 
                 if (validDate) {
                     etDate.setText(movieDate);
+                    ticket.setMovieDate(movieDate);   // add this line by dong
                 }
                 else {
                     Toast.makeText(MovieRegisterActivity.this,
@@ -379,9 +375,12 @@ public class MovieRegisterActivity extends AppCompatActivity
 
         if (canPurchase)
         {
+            ticket.setBuyerName(etName.getText().toString()); // add this by dong
             // The ticket can be PURCHASED!
             // Pass everything to the next activity using Intents
-            Toast.makeText(MovieRegisterActivity.this, "HURRAY!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MovieRegisterActivity.this, MovieReceiptActivity.class);
+            intent.putExtra("ticket", ticket);
+            startActivity(intent);
         }
         else
         {

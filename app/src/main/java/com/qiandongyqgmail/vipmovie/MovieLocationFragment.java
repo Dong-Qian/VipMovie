@@ -1,7 +1,7 @@
 /*
 * FILE :            MovieLocationFragment.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-25
 * DESCRIPTION :     Location Screen to show the VIP Movie location and some pictures
 */

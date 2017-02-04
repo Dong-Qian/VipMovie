@@ -8,6 +8,7 @@
 package com.qiandongyqgmail.vipmovie;
 
 
+import java.io.Serializable;
 
 /*
  * METHOD : Ticket
@@ -15,7 +16,7 @@ package com.qiandongyqgmail.vipmovie;
  *      attributes pertaining to the title of the movie, the purchaser's name, the date and time
  *      at which the movie plays, and many other attributes.
  */
-public class Ticket
+public class Ticket implements Serializable
 {
     private final float kIMAXPrice = 3.0f;
     private final String kIMAXType = "IMAX";
@@ -27,6 +28,7 @@ public class Ticket
     private String movieType = null;
     private String ticketQuantity = null;
     private String totalPrice = null;
+    private String ticketPrice = null;
 
 
     //==============================================
@@ -45,6 +47,7 @@ public class Ticket
         movieType = "Regular";
         ticketQuantity = "0";
         totalPrice = "0.00";
+        ticketPrice = "0.00";
     }
 
 
@@ -147,6 +150,11 @@ public class Ticket
         totalPrice = String.format("%2.2f", price);
     }
 
+    public void setTicketPrice(String price)
+    {
+        ticketPrice = price;
+    }
+
 
     //==============================================
     // GETTERS
@@ -184,5 +192,10 @@ public class Ticket
     public String getTotalPrice()
     {
         return totalPrice;
+    }
+
+    public String getTicketPrice()
+    {
+        return ticketPrice;
     }
 }

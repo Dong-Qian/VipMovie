@@ -1,7 +1,7 @@
 /*
 * FILE :            MovieReviewFragment.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-25
 * DESCRIPTION :     Review Screen which shows a list of reviews
 *                       1. name
