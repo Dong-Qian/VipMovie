@@ -1,7 +1,7 @@
 /*
 * FILE :            Ticket.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin Che / Monira Sultana ()
+* PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-30
 * DESCRIPTION : The class definition and implementation for the Ticket class.
 */

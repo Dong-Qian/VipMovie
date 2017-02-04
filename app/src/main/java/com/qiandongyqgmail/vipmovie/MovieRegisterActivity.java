@@ -1,7 +1,7 @@
 /*
 * FILE :            MovieRegisterActivity.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin Che / Monira Sultana (7308182)
+* PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-25
 * DESCRIPTION : This is the code-behind for the MovieRegisterActivity. The purpose
 *       of this activity is to simulate the purchasing of a ticket for a particular movie.
@@ -105,23 +105,20 @@ public class MovieRegisterActivity extends AppCompatActivity
         //
         etName = (EditText) findViewById(R.id.ET_Register_Name);
 
-//        etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
-//        {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-//            {
-//                if (actionId == EditorInfo.IME_ACTION_DONE)
-//                {
-//                    InputMethodManager imm = null;
-//                    imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
-//
-//                    ticket.setBuyerName(etName.getText().toString());
-//                }
-//
-//                return false;
-//            }
-//        });
+        etName.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+                if (actionId == EditorInfo.IME_ACTION_DONE)
+                {
+                    InputMethodManager imm = null;
+                    imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
+                }
+                return false;
+            }
+        });
 
         // The Ticket Type Spinner widget
         //
@@ -134,7 +131,7 @@ public class MovieRegisterActivity extends AppCompatActivity
                 ticketQuantity = parent.getItemAtPosition(position).toString();
                 calculateCurrentPrice();
                 ticket.setTicketQuantity(ticketQuantity);
-                ticket.setTicketPrice(arrayPrice[arrayPosition]); // added by dong
+                ticket.setTicketPrice(arrayPrice[arrayPosition]);
 
             }
 
@@ -375,8 +372,8 @@ public class MovieRegisterActivity extends AppCompatActivity
 
         if (canPurchase)
         {
-            ticket.setBuyerName(etName.getText().toString()); // add this by dong
-            // The ticket can be PURCHASED!
+            ticket.setBuyerName(etName.getText().toString());
+            // The ticket can be PURCHASED
             // Pass everything to the next activity using Intents
             Intent intent = new Intent(MovieRegisterActivity.this, MovieReceiptActivity.class);
             intent.putExtra("ticket", ticket);

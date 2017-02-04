@@ -1,7 +1,7 @@
 /*
 * FILE :            Review.java
 * PROJECT :         MAD - Assignment #1
-* PROGRAMMER :      Dong Qian (6573448) / Austin chen () / Monira Sultana ()
+* PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana (7308182)
 * FIRST VERSION :   2017-01-25
 * DESCRIPTION :     A class to create a review object
 */

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    FILE :            activity_movie.xml
+    PROJECT :         MAD - Assignment #1
+    PROGRAMMER :      Dong Qian (6573448) / Austin Che (7243322) / Monira Sultana (7308182)
+    FIRST VERSION :   2017-01-25
+    DESCRIPTION :     Layout of the movie receipt screen.
+-->
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_movie_recipt"
